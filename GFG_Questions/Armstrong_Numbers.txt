@@ -1,0 +1,26 @@
+// User function Template for C++
+class Solution {
+  public:
+    bool armstrongNumber(int n) {
+        // code here
+        int m =n, original = n;
+        int cnt = 0;
+        do{
+            n /= 10;
+            cnt++;
+        }while(n!=0);
+        
+        
+        int arm = 0, rem = 0;
+        while(m>0){
+           rem = m%10;
+           arm = arm+pow(rem,cnt);
+           m = m/10;
+        }
+        
+        if(original == arm)
+        return true;
+        else
+        return false;
+    }
+};
