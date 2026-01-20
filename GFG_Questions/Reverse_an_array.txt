@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    void reverseArrayRec(vector<int> &arr, int i) {
+        // code here
+        int n = arr.size();
+        if(i>=n-i-1)
+        return;
+        
+        swap(arr[i],arr[n-i-1]);
+        
+        reverseArrayRec(arr, i+1);
+    }
+    
+    void reverseArray(vector<int> &arr)
+    {
+        reverseArrayRec(arr, 0);
+    }
+};
