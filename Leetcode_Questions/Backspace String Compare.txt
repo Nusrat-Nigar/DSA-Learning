@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool backspaceCompare(string s, string t) {
+      return buildStr(s) == buildStr(t);
+    }
+
+private:
+    string buildStr(string str){
+        stack<char> st;
+        for(char c:str){
+            if(c == '#'){
+                if(!(st.empty()))
+                st.pop();
+            }
+
+                else
+                st.push(c);
+            
+        }
+
+        string res;
+        while(!(st.empty())){
+            res.push_back(st.top());
+            st.pop();
+        }
+
+        return res;
+    }
+};
