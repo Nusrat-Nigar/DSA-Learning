@@ -1,0 +1,21 @@
+class Solution {
+private:
+int CalculateNum(int num){
+    int sum=0;
+    while(num>0){
+        int mod = num%10;
+        sum += mod*mod;
+        num /= 10;
+    }
+    return sum;
+}
+public:
+    bool isHappy(int n) {
+        unordered_set<int> seen;
+        while(n!=1 && !seen.count(n)){
+            seen.insert(n);
+            n = CalculateNum(n);
+        }
+        return n==1;
+    }
+};
