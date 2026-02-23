@@ -1,0 +1,36 @@
+class Solution {
+public:
+
+    bool valid(string str1, string str2, int k){
+        int len1 = str1.size();
+        int len2 = str2.size();
+        if(len1%k > 0  || len2%k > 0)
+        return false;
+        else{
+            string base = str1.substr(0,k);
+            int div1 = len1/k, div2 = len2/k;
+            return str1 == JoinWords(base, div1) && str2 == JoinWords(base, div2);
+        }
+    }
+
+    string JoinWords(string base, int div){
+            string ans = "";
+            for(int i=0;i<div;i++){
+                ans += base;
+            }
+            return ans;
+    }
+
+
+
+    string gcdOfStrings(string str1, string str2) {
+        int len1 = str1.size();
+        int len2 = str2.size();
+        for(int i = min(len1, len2);i>=1;i--){
+            if(valid(str1, str2, i)){
+                return str1.substr(0,i);
+            }
+        }
+        return "";
+    }
+};
