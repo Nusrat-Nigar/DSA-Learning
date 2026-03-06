@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool closeStrings(string word1, string word2) {
+        unordered_map<char, int>mp1, mp2;
+        
+        for(int i=0;i<word1.size();i++)
+        {
+            mp1[word1[i]]++;
+        }
+        for(int i=0;i<word2.size();i++)
+        {
+            if(mp1.find(word2[i])==mp1.end())return false;
+            mp2[word2[i]]++;
+        }
+        vector<int>t1, t2;
+        for(auto x:mp1)
+        {
+            t1.push_back(x.second);
+        }
+        for(auto x:mp2)
+        {
+            t2.push_back(x.second);
+        }
+        if(mp1.size()!=mp2.size())return false;
+
+        sort(t1.begin(), t1.end());
+        sort(t2.begin(), t2.end());
+
+        for(int i=0;i<t1.size();i++)
+        {
+            if(t1[i]!=t2[i])return false;
+        }
+        return true;
+    }
+};
