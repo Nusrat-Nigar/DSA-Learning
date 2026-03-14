@@ -1,0 +1,38 @@
+class Solution {
+public:
+    string decodeString(string s) {
+        int num = 0;
+        string curr = "";
+        stack<int> numStack;
+        stack<string> strStack;
+        for(char c : s){
+            if( isdigit(c)){
+                num = num*10+(c - '0');
+            }
+
+            else if(c == '['){
+                numStack.push(num);
+                strStack.push(curr);
+                num=0;
+                curr="";
+            }
+
+            else if(c  == ']'){
+                int repeat = numStack.top();
+                numStack.pop();
+                string tmp  = strStack.top();
+                strStack.pop();
+                while(repeat--){
+                    tmp += curr;
+                    
+                }
+                curr = tmp;
+            }
+
+            else{
+                curr += c;
+            }
+        }
+        return curr;
+    }
+};
